@@ -1,5 +1,5 @@
 # models.py
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 
@@ -19,3 +19,13 @@ class Room(Base):
     player2_id = Column(Integer, ForeignKey('users.id'))
     player1 = relationship("User", foreign_keys=[player1_id])
     player2 = relationship("User", foreign_keys=[player2_id])
+
+
+# Database setup
+DATABASE_URL = "sqlite:///./game.db"  # Using SQLite for simplicity
+
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+SessionLocal = sessionmaker(bind=engine)
+
+def init_db():
+    Base.metadata.create_all(bind=engine)
