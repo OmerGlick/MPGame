@@ -15,10 +15,17 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 find_package(Boost 1.70 REQUIRED COMPONENTS system)
 
 # Add executable
-add_executable(WebSocketServer src/websocket_server.cpp)
+set(SOURCES
+    src/websocket_server.cpp
+    src/websocket_session.cpp
+    src/game_state.cpp
+    src/game_logic.cpp
+    src/input_handler.cpp
+    src/main.cpp)
+add_executable(WebSocketServer ${SOURCES})
 
-# Include Boost headers
-target_include_directories(WebSocketServer PRIVATE ${Boost_INCLUDE_DIRS})
+# Include Boost headers and our headers
+target_include_directories(WebSocketServer PRIVATE include ${Boost_INCLUDE_DIRS})
 
 # Link Boost libraries
 target_link_libraries(WebSocketServer PRIVATE ${Boost_LIBRARIES})
