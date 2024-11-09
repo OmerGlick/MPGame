@@ -1,4 +1,3 @@
-# models.py
 from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
@@ -17,6 +16,8 @@ class Room(Base):
     room_name = Column(String, unique=True, nullable=False)
     player1_id = Column(Integer, ForeignKey('users.id'))
     player2_id = Column(Integer, ForeignKey('users.id'))
+
+    # Relationships to link players
     player1 = relationship("User", foreign_keys=[player1_id])
     player2 = relationship("User", foreign_keys=[player2_id])
 
