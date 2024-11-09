@@ -2,4 +2,4 @@ api/venv/
 api/__pycache__/
 api/game.db
 backend/build/
-.vscode/settings.json
+.vscode/
