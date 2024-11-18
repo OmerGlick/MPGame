@@ -3,3 +3,4 @@ api/__pycache__/
 api/game.db
 backend/build/
 .vscode/
+build/
